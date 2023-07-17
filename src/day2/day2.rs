@@ -12,6 +12,7 @@ impl Day for Day2 {
     }
 }
 
+#[allow(dead_code)]
 impl Day2 {
     pub fn new() -> Self {
         Day2 {}

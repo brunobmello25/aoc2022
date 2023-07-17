@@ -12,12 +12,12 @@ impl Day for Day4 {
     }
 }
 
+#[allow(dead_code)]
 impl Day4 {
     pub fn new() -> Self {
         Day4 {}
     }
 
-    #[allow(dead_code)]
     fn run_part_1(&self) {
         let filename = "inputs/day4.txt";
         let input = self.read_input(filename);
@@ -29,7 +29,6 @@ impl Day4 {
         println!("result part 1: {result}");
     }
 
-    #[allow(dead_code)]
     fn run_part_2(&self) {
         let filename = "inputs/day4.txt";
         let input = self.read_input(filename);

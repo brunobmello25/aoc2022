@@ -14,12 +14,12 @@ impl Day for Day3 {
     }
 }
 
+#[allow(dead_code)]
 impl Day3 {
     pub fn new() -> Self {
         Day3 {}
     }
 
-    #[allow(dead_code)]
     fn run_part_1(&self) {
         let filename = "inputs/day3.txt";
         let input = std::fs::read_to_string(filename).expect("failed to read input content");
@@ -39,8 +39,7 @@ impl Day3 {
 
         println!("sum of weights: {}", sum_weights);
     }
-
-    #[allow(dead_code)]
+    
     fn run_part_2(&self) {
         let filename = "inputs/day3.txt";
         let input = std::fs::read_to_string(filename)
@@ -93,6 +92,7 @@ impl Group {
 
         return groups;
     }
+
 
     fn get_repeating_char(&self) -> Option<char> {
         let first_full_string = self.first.get_full_string();
