@@ -1,15 +1,16 @@
-use day4::day4::Day4;
+use day5::day5::Day5;
 
 mod day2;
 mod day3;
 mod day4;
+mod day5;
 
 trait Day {
     fn run(&self, part: &'static str);
 }
 
 fn main() {
-    let day = Day4::new();
+    let day = Day5::new();
 
-    day.run("part2");
+    day.run("part1");
 }
