@@ -27,14 +27,28 @@ impl Day5 {
         let mut stacks = self.parse_initial_state(state);
         let movements = self.parse_moves(movements);
 
-        self.run_moves(&mut stacks, movements);
+        self.run_moves(&mut stacks, movements, false);
 
         for stack in stacks {
             println!("{}", stack.top().unwrap());
         }
     }
 
-    fn run_part_2(&self) {}
+    fn run_part_2(&self) {
+        let input = self.read_input("inputs/day5.txt");
+        let splitted = input.split("\n\n").collect::<Vec<&str>>();
+        let state = splitted[0].to_string();
+        let movements = splitted[1].to_string();
+
+        let mut stacks = self.parse_initial_state(state);
+        let movements = self.parse_moves(movements);
+
+        self.run_moves(&mut stacks, movements, true);
+
+        for stack in stacks {
+            println!("{}", stack.top().unwrap());
+        }
+    }
 
     fn read_input(&self, filename: &str) -> String {
         std::fs::read_to_string(filename).expect("failed to read input content")
@@ -86,7 +100,7 @@ impl Day5 {
         return movements;
     }
 
-    fn run_moves(&self, stacks: &mut Vec<Stack>, movements: Vec<Movement>) {
+    fn run_moves(&self, stacks: &mut Vec<Stack>, movements: Vec<Movement>, keep_order: bool) {
         for movement in movements.iter() {
             let from_index = stacks
                 .iter()
@@ -97,14 +111,25 @@ impl Day5 {
                 .position(|stack| stack.id == movement.to)
                 .unwrap();
 
+            let mut to_push: Vec<char> = vec![];
+
             for _ in 0..movement.count {
                 let from = &mut stacks[from_index];
 
                 let el = from.pop().unwrap();
 
-                let to = &mut stacks[to_index];
+                to_push.push(el);
+            }
 
-                to.push(el);
+            let to = &mut stacks[to_index];
+            if keep_order {
+                for el in to_push.iter().rev() {
+                    to.push(el.to_owned());
+                }
+            } else {
+                for el in to_push.iter() {
+                    to.push(el.to_owned());
+                }
             }
         }
     }

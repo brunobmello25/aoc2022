@@ -12,5 +12,5 @@ trait Day {
 fn main() {
     let day = Day5::new();
 
-    day.run("part1");
+    day.run("part2");
 }
